@@ -9,15 +9,7 @@ app.use(bodyParser.urlencoded({
 })); // for parsing
 // application/x-www-form-urlencoded
 //
-var Db = require('mongodb').Db, MongoClient = require('mongodb').MongoClient, 
-mongoose = require('mongoose'), 
-Server = require('mongodb').Server, 
-ReplSetServers = require('mongodb').ReplSetServers, 
-ObjectID = require('mongodb').ObjectID, 
-Binary = require('mongodb').Binary, GridStore = require('mongodb').GridStore, 
-Grid = require('mongodb').Grid, 
-Code = require('mongodb').Code, 
-BSON = require('mongodb').BSON, 
+
 util = require('util'), 
 fs = require('fs'), 
 assert = require('assert'), 
@@ -32,12 +24,7 @@ uuid = require('node-uuid'),
 
 //
 securityUtils = require('./utils/SecurityUtils.js'), 
-configServcice = require('./service/configService.js'), 
-userServcice = require('./service/userService.js'), 
-crudServcice = require('./service/crudService.js'), 
-//
-languages = require('./data/ref/languages.json');
-
+c
 //
 var _db; // new Db('APPDB', new Server('localhost', 27017));
 
@@ -52,15 +39,7 @@ var server = app.listen(8585, function() {
 	if (cluster.isWorker) {
 		console.log('Worker process ...');
 	}
-	// MongoDB
-	mongoclient.connect('mongodb://localhost:27017/APPDB', {
-		native_parser : true
-	}, function(err, db) {
-		assert.equal(null, err);
-		assert.ok(db !== null);
-		_db = db;
-		console.log('Connected to MongoDB ...');
-	});
+	
 
 	var cpuCount = require('os').cpus().length;
 	console.log('CPU nodes = ' + cpuCount);
@@ -75,76 +54,24 @@ function supportCrossOriginScript(req, res, next) {
 	res.status(200);
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Content-Type");
-	// res.header("Access-Control-Allow-Headers", "Origin");
-	// res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With,
-	// Content-Type, Accept");
-	// res.header("Access-Control-Allow-Methods","POST, OPTIONS");
 	res.header("Access-Control-Allow-Methods",
 			"POST, GET, OPTIONS, DELETE, PUT, HEAD");
-	// res.header("Access-Control-Max-Age","1728000");
 	next();
 }
 
 app.post('/addUserAsync/', supportCrossOriginScript, function(req, res, next) {
-	userServcice.addUserAsync(req, res, next, _db);
+	//userServcice.addUserAsync(req, res, next, _db);
 });
 
-app.post('/modifyUserAsync/', supportCrossOriginScript,
-		function(req, res, next) {
-			userServcice.modifyUserAsync(req, res, next, _db);
 
-		});
 
-app.post('/deleteUserAsync/', supportCrossOriginScript,
-		function(req, res, next) {
-			crudServcice.deleteDocumentAsync(req, res, next, _db, "UserAuth", {
-				"email" : req.body.email
-			});
 
-		});
-
-app.post('/findOneUserAsync/', supportCrossOriginScript, function(req, res,
-		next) {
-	crudServcice
-			.findOneDocumentAsync(req, res, next, _db, "UserAuth", req.body);
-
-});
-
-app.post('/login/', supportCrossOriginScript, function(req, res, next) {
-	var query;
-	var username = req.body.username;
-	var email = req.body.email;
-	var password = securityUtils.md5(req.body.password);
-	if (username !== null) {
-		query = {
-			"username" : username,
-			"password" : password
-		};
-	}
-	if (email !== null) {
-		query = {
-			"email" : email,
-			"password" : password
-		};
-	}
-	crudServcice.findOneDocumentAsync(req, res, next, _db, "UserAuth", query);
-});
 
 app.get('/verifyEmail/:id', function(req, res,next) {
-	userServcice.verifyUser(req, res, next, _db, "UserAuth", {"_id":new ObjectID(req.params.id)});
+	//userServcice.verifyUser(req, res, next, _db, "UserAuth", {"_id":new ObjectID(req.params.id)});
 });
 
-app.post('/config/', supportCrossOriginScript, function(req, res,
-		next) {
-	configServcice.initRef(req, res, next, _db,'France');
 
-});
-
-app.post('/resetPassword/', supportCrossOriginScript, function(req, res,
-		next) {
-	userServcice.resetPassword(req, res, next, _db);
-
-});
 
 function errorHandler(err, req, res, next) {
 	console.log(' handle error: ' + err);
