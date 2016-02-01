@@ -1,0 +1,28 @@
+{
+  "name": "MLNode",
+  "version": "0.1.0",
+  "description": "MLNode",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1",
+    "postinstall": "bower install"
+  },
+  "repository": "",
+  "keywords": [
+    "node.js",
+    "eclipse",
+    "nodeclipse"
+  ],
+  "author": "Anis HAJRI",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "glob": "^6.0.4",
+    "http": "0.0.0",
+    "node-uuid": "^1.4.7",
+    "passport": "^0.3.2",
+    "path": "^0.12.7",
+    "serve-static": "~1.7.0",
+    "url": "^0.11.0"
+  }
+}
