@@ -15,28 +15,24 @@ module.exports.reloadRefData = function(req, res, next, db,qb) {
 	_db = db;
 	var jsonUser = req.body;
 	var p = path.dirname(require.main.filename) + '\\data\\';
+	
 	var dataFiles = [];
-
+	var fName;
 	async.series([ function(callback) {
 		var i = 1;
 		fs.readdir(p, function(error, files) {
 			if (error) {
-				return res.status(500).json({
-					"status" : -1,
-					"msg" : error.message
-				});
+				callback(error,null);
 			}
 			var fileCount = files.length;
 			files.forEach(function(filename) {
+				fName=filename;
 				fs.readFile(p + filename, 'utf-8', function(err, content) {
 					if (err) {
-						return res.status(500).json({
-							"status" : -1,
-							"msg" : err.message
-						});
+						callback(err,null);
 					}
 					dataFiles[i] = {
-						uri : 'ref/' + filename,
+						uri : 'app/' + filename,
 						contentType : 'application/json',
 						content : JSON.parse(content),
 					};
@@ -50,8 +46,11 @@ module.exports.reloadRefData = function(req, res, next, db,qb) {
 	}, 
 	function(callback){
 		//check collection exist
+		//console.log(qb.collection('app/AllCards.json'));
+//		db.documents.query( qb.where(qb.collection(fName));
 		for (var int = 0; int < dataFiles.length; int++) {
-			console.log(dataFiles[int])
+			
+//			console.log(JSON.stringify(dataFiles[int]))
 			//db.documents.query( qb.where(qb.collection(collName));
 		}
 		callback();
@@ -63,7 +62,6 @@ module.exports.reloadRefData = function(req, res, next, db,qb) {
 			return el.uri;
 		});
 		_db.documents.remove(names).result(function(response) {
-			console.log(JSON.stringify(response));
 			callback();
 		});
 	}, function(callback) {
@@ -79,7 +77,6 @@ module.exports.reloadRefData = function(req, res, next, db,qb) {
 		});
 
 	} ], function(err, result) {
-		console.log('#####callback#####');
 		if (result) {
 			return res.status(200).json(msg);
 		}

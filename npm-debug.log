@@ -1,0 +1,81 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\DEV\\Angular\\lib\\Portable\\\\node.exe',
+1 verbose cli   'C:\\DEV\\Angular\\lib\\Portable\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'child_process',
+1 verbose cli   '--save' ]
+2 info using npm@1.4.9
+3 info using node@v0.10.36
+4 verbose node symlink C:\DEV\Angular\lib\Portable\\node.exe
+5 warn package.json MLNode@0.1.0 No repository field.
+6 warn package.json fs@0.0.2 fs is also the name of a node core module.
+7 warn package.json fs@0.0.2 No description
+8 warn package.json fs@0.0.2 No repository field.
+9 warn package.json http@0.0.0 http is also the name of a node core module.
+10 warn package.json http@0.0.0 No description
+11 warn package.json http@0.0.0 No repository field.
+12 warn package.json util@0.10.3 util is also the name of a node core module.
+13 warn package.json crypto@0.0.3 crypto is also the name of a node core module.
+14 warn package.json url@0.11.0 url is also the name of a node core module.
+15 warn package.json cluster@0.7.7 cluster is also the name of a node core module.
+16 warn package.json path@0.12.7 path is also the name of a node core module.
+17 verbose readDependencies using package.json deps
+18 verbose cache add [ 'child_process', null ]
+19 verbose cache add name=undefined spec="child_process" args=["child_process",null]
+20 verbose parsed url { protocol: null,
+20 verbose parsed url   slashes: null,
+20 verbose parsed url   auth: null,
+20 verbose parsed url   host: null,
+20 verbose parsed url   port: null,
+20 verbose parsed url   hostname: null,
+20 verbose parsed url   hash: null,
+20 verbose parsed url   search: null,
+20 verbose parsed url   query: null,
+20 verbose parsed url   pathname: 'child_process',
+20 verbose parsed url   path: 'child_process',
+20 verbose parsed url   href: 'child_process' }
+21 silly lockFile 4845fa97-child-process child_process
+22 verbose lock child_process C:\Users\ahajri\AppData\Roaming\npm-cache\4845fa97-child-process.lock
+23 silly lockFile 4845fa97-child-process child_process
+24 silly lockFile 4845fa97-child-process child_process
+25 verbose addNamed [ 'child_process', '' ]
+26 verbose addNamed [ null, '*' ]
+27 silly lockFile 512a7ef6-child-process child_process@
+28 verbose lock child_process@ C:\Users\ahajri\AppData\Roaming\npm-cache\512a7ef6-child-process.lock
+29 silly addNameRange { name: 'child_process', range: '*', hasData: false }
+30 verbose url raw child_process
+31 verbose url resolving [ 'https://registry.npmjs.org/', './child_process' ]
+32 verbose url resolved https://registry.npmjs.org/child_process
+33 info trying registry request attempt 1 at 10:45:05
+34 http GET https://registry.npmjs.org/child_process
+35 http 404 https://registry.npmjs.org/child_process
+36 silly registry.get cb [ 404,
+36 silly registry.get   { 'content-type': 'application/json',
+36 silly registry.get     'cache-control': 'max-age=0',
+36 silly registry.get     'content-length': '2',
+36 silly registry.get     'accept-ranges': 'bytes',
+36 silly registry.get     date: 'Wed, 03 Feb 2016 09:45:26 GMT',
+36 silly registry.get     via: '1.1 varnish',
+36 silly registry.get     age: '0',
+36 silly registry.get     connection: 'keep-alive',
+36 silly registry.get     'x-served-by': 'cache-fra1228-FRA',
+36 silly registry.get     'x-cache': 'MISS',
+36 silly registry.get     'x-cache-hits': '0',
+36 silly registry.get     'x-timer': 'S1454492725.850275,VS0,VE764' } ]
+37 silly lockFile 512a7ef6-child-process child_process@
+38 silly lockFile 512a7ef6-child-process child_process@
+39 error 404 Not Found
+39 error 404
+39 error 404 'child_process' is not in the npm registry.
+39 error 404 You should bug the author to publish it
+39 error 404 It was specified as a dependency of 'MLNode'
+39 error 404
+39 error 404 Note that you can also install from a
+39 error 404 tarball, folder, or http url, or git url.
+40 error System Windows_NT 6.1.7601
+41 error command "C:\\DEV\\Angular\\lib\\Portable\\\\node.exe" "C:\\DEV\\Angular\\lib\\Portable\\node_modules\\npm\\bin\\npm-cli.js" "install" "child_process" "--save"
+42 error cwd C:\Users\ahajri\git\MLNode
+43 error node -v v0.10.36
+44 error npm -v 1.4.9
+45 error code E404
+46 verbose exit [ 1, true ]
