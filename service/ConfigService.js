@@ -45,7 +45,7 @@ module.exports.reloadRefData = function(req, res, next, db,qb) {
 							    callback(JSON.stringify(error,null,2),null);
 							});
 					if (i === fileCount) {
-						callback();
+						callback(null,{"status":1,"msg":"Ref data Loaded"});
 					}
 					i++;
 				});
