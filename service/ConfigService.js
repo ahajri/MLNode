@@ -32,10 +32,18 @@ module.exports.reloadRefData = function(req, res, next, db,qb) {
 						callback(err,null);
 					}
 					dataFiles[i] = {
-						uri : 'app/' + filename,
+						uri :  filename,
 						contentType : 'application/json',
 						content : JSON.parse(content),
 					};
+					db.createCollection(fName.split('.')[0], 
+							{uri :  filename,	contentType : 'application/json',content : JSON.parse(content),	} 
+							).result(function(response) {
+							    console.log(response);
+							}, function (error) {	
+							    console.log('###'+JSON.stringify(error,null,2));
+							    callback(JSON.stringify(error,null,2),null);
+							});
 					if (i === fileCount) {
 						callback();
 					}
@@ -43,42 +51,35 @@ module.exports.reloadRefData = function(req, res, next, db,qb) {
 				});
 			});
 		});
-	}, 
-	function(callback){
-		//check collection exist
-		//console.log(qb.collection('app/AllCards.json'));
-//		db.documents.query( qb.where(qb.collection(fName));
-		for (var int = 0; int < dataFiles.length; int++) {
-			
-//			console.log(JSON.stringify(dataFiles[int]))
-			//db.documents.query( qb.where(qb.collection(collName));
-		}
-		callback();
 	}
-	,function(callback) {
-		var names = '';
-		dataFiles.map(function(el) {
-			names += el.uri + ',';
-			return el.uri;
-		});
-		_db.documents.remove(names).result(function(response) {
-			callback();
-		});
-	}, function(callback) {
-		_db.documents.write(JSON.stringify(dataFiles)).result(function(response) {
-			console.log('Loaded the following documents:');
-			response.documents.forEach(function(document) {
-				console.log('  ' + document.uri);
-			});
-			callback(null,{"status":1,"msg":"Ref Data Reloaded"});
-		}, function(error) {
-			console.log(JSON.stringify(error, null, 2));
-			callback(error, null);
-		});
-
-	} ], function(err, result) {
+//	, 
+//	function(callback) {
+//		var names = '';
+//		dataFiles.map(function(el) {
+//			names += el.uri + ',';
+//			return el.uri;
+//		});
+//		_db.documents.remove(names).result(function(response) {
+//			callback();
+//		});
+//	}, 
+//	function(callback) {
+//		_db.documents.write(JSON.stringify(dataFiles)).result(function(response) {
+//			console.log('Loaded the following documents:');
+//			response.documents.forEach(function(document) {
+//				console.log('  ' + document.uri);
+//			});
+//			callback(null,{"status":1,"msg":"Ref Data Reloaded"});
+//		}, function(error) {
+//			console.log(JSON.stringify(error, null, 2));
+//			callback(error, null);
+//		});
+//
+//	} 
+	
+	], function(err, result) {
 		if (result) {
-			return res.status(200).json(msg);
+			return res.status(200).json(result);
 		}
 		if (err) {
 			return res.status(500).json(err);

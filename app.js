@@ -59,10 +59,12 @@ function supportCrossOriginScript(req, res, next) {
 	next();
 }
 
+//
 app.get('/reloadRefData/', supportCrossOriginScript, function(req, res, next) {
 	configServcice.reloadRefData(req, res, next, _db,qb);
 });
 
+//
 function errorHandler(err, req, res, next) {
 	console.log(' handle error: ' + err);
 	var code = err.code;
