@@ -1,0 +1,4 @@
+#Collections and Directories
+ MarkLogic provides two concepts: Collections and Directories
+Collections as unordered set
+Collections can hold multiple documents and documents can belong to multiple collections.
